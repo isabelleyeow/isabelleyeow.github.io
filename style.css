@@ -81,3 +81,32 @@ body {
     filter: blur(4px);
 }
 /*i added blur to make the words more readable for the users, i think this makes the text a lot more clearer without taking away the movements of the video*/
+
+.all-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+.question-row {
+    display: flex;
+    width: 100%;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+.question-text {
+    flex: 1;
+}
+
+.question-text h3 {
+    margin: 0 0 0.5rem 0;
+}
+
+.question-text p {
+    margin: 0;
+}
+
+.question-row img {
+    max-width: 40%;
+    height: auto;
+}
+/*trying to fix the size of the image and making sure that they are side by side to make it look more clean and orderly as well as the text*/
