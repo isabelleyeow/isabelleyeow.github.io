@@ -1,15 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@font-face {
+    font-family: "Montserrat";
+    src: url('fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Imperial Script";
+    src: url('fonts/ImperialScript-Regular.ttf') format('truetype');
+}
+
 * {
     box-sizing: border-box;
+}
+
+h1 {
+    font-family: "Imperial Script", cursive;
 }
 
 body {
     margin: 0;
     padding: 0 1rem;
     overflow-x: hidden;
-    font-family: "Montserrat";
+    font-family: "Montserrat", sans-serif;
 }
-/* i chose this font because it seemed to fit the vibe of luni while. being easy to read as well*/
+/* i chose this font because it seemed to fit the vibe of luni while. being easy to read as well, as for the title i chose something that i liked instead of being related to luni as a way of expressing what i like.*/
 
 .video-hero {
     position: relative;
@@ -42,7 +55,7 @@ body {
     gap: 0.5rem;
 }
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: 6rem;
     margin: 0;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
 }
