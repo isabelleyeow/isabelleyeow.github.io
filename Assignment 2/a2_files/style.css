@@ -35,7 +35,7 @@ body {
 }
 
 
-/* Navigation styling */
+/* Top Navigation styling */
 nav {
   margin-top: 20px;
   text-align: center;
@@ -56,6 +56,7 @@ nav a {
   color: var(--text-color);
 }
 
+/*editing the aesthetics of the watch now buttons and how users will interact with it. as users hover over it the colour will change with i personally like a lot*/
 .watch-now {
   display: inline-flex;
   align-items: center;
@@ -72,10 +73,70 @@ nav a {
 }
 
 .watch-now:hover {
-  background: #005fcc;       /* darker blue on hover for feedback */
+  background: #005fcc;      
   transform: translateY(-1px);
 }
 
+.player-page {
+  padding-top: 6rem;
+}
+
+/* adding more details to make it look like a real music website*/
+.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  gap: 0.6rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.follow {
+  padding: 0.3rem 1rem;
+  background: #fff;
+  border: 0.5px solid #0077ff;
+  color: #0077ff;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.follow:hover {
+  background: #0077ff;
+  color: #fff;
+}
+
+.follow {
+  background: #0077ff;
+  color: #fff;
+}
+
+/* about the video, styling and fixing the layout of it*/
+.about-video {
+  padding: 2rem;
+  max-width: 700px;
+  margin: 0 auto;      
+  text-align: left;    
+}
+
+.about-heading {
+  font-size: 1.1rem;
+  font-weight: 700;    /* bold */
+  margin-bottom: 0.5rem;
+}
+
+.about-text {
+  color: #555;
+  line-height: 1.6;
+}
 
 /* Footer styling */
 footer {

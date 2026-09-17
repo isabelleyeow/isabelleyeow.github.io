@@ -19,3 +19,9 @@ function updateProgressBar() {
   progressBar.style.width = value + "%";
 }
 // Add other functionalities here
+
+function toggleFollow() {
+  const btn = document.querySelector('.follow');
+  const isFollowing = btn.classList.toggle('following');
+  btn.textContent = isFollowing ? '✓ Following' : '+ Follow';
+}
