@@ -129,13 +129,88 @@ nav a {
 
 .about-heading {
   font-size: 1.1rem;
-  font-weight: 700;    /* bold */
+  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
 .about-text {
   color: #555;
   line-height: 1.6;
+}
+
+/* editing the media player page to make it seem like a real media player. i want something easy to navigate and read*/
+.watch-body {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  align-items: flex-start;
+  font-family: "Arial", sans-serif;
+}
+
+.watch-info {
+  flex: 1.2;
+}
+
+.lyrics-panel {
+  flex: 1;
+  background: #fafafa;
+  border-radius: 8px;
+  padding: 1.2rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.lyrics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.lyrics-header h2 {
+  font-size: 1.1rem;
+}
+
+#lyrics-toggle {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lyrics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.lyric-line {
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  padding: 0.2rem 0;
+}
+
+.lyric-line:hover {
+  color: #444;
+}
+
+/* the currently playing line — bold + dark + slightly scaled up */
+.lyric-line.active {
+  color: #111;
+  font-weight: 700;
+  transform: scale(1.03);
+}
+
+/* stack vertically on smaller screens */
+@media (max-width: 750px) {
+  .watch-body {
+    flex-direction: column;
+  }
 }
 
 /* Footer styling */

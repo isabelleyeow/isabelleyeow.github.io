@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>media player</title>
+    <link rel="stylesheet" href="./a2_files/reset.css">
+    <link rel="stylesheet" href="./a2_files/style.css">
+    <script src="./a2_files/script.js" defer=""></script>
+</head>
+<body>
+    <main class="container player-page">
+        <div class="media-player">
+            <video id="custom-video-player">
+                <source src="..." type="video/mp4">
+            </video>
+        <div class="custom-controls">
+        </div>
+    </div>
+
+    <div class="watch-body">
+
+    <section class="watch-info">
+      <h1 class="watch-title">3 Monsters</h1>
+      <p class="watch-stats">1 view • Released 2026</p>
+
+      <div class="action-row">
+        <button class="action-btn" onclick="toggleLike()">
+          <span id="like-icon">🤍</span> <span id="like-count">1</span>
+        </button>
+        <button class="action-btn">🔗 Share</button>
+      </div>
+      <!-- trying to format and layout how this will look like as an actual media player. i want this to look like youtube but not completely the same..? -->
+      <div class="uploader-row">
+        <img src="./a2_files/avatar-placeholder.png" alt="Adam Marchione" class="avatar">
+        <span class="uploader-name">Adam Marchione</span>
+        <button class="follow" onclick="toggleFollow()">+ Follow</button>
+      </div>
+
+      <p class="watch-description">
+        "3 Monsters" explores isolation through surreal, dreamlike sequences 
+        shot entirely at night.
+      </p>
+    </section>
+
+    <section class="lyrics-panel">
+      <div class="lyrics-header">
+        <h2>Lyrics</h2>
+        <button id="lyrics-toggle" onclick="toggleLyricsVisibility()">Hide</button>
+      </div>
+      <div id="lyrics-list" class="lyrics-list">
+        <!-- lines injected by JS from the lyrics array -->
+      </div>
+    </section>
+
+  </div>
+</main>
+</body>
+</html>
