@@ -34,14 +34,6 @@ body {
   padding: 10px;
 }
 
-/* Header styling */
-header {
-  background-color: var(--main-bg-color);
-  color: var(--main-text-color);
-  padding: 10px 0;
-  text-align: center;
-  width: 100%;
-}
 
 /* Navigation styling */
 nav {
@@ -64,51 +56,26 @@ nav a {
   color: var(--text-color);
 }
 
-/* Media player styling */
-.media-player {
-  width: 100%;
-  margin: 0 auto;
-}
-
-.media-player video {
-  max-width: 100%;
-}
-
-.custom-controls {
-  display: flex;
-  justify-content: space-between;
+.watch-now {
+  display: inline-flex;
   align-items: center;
-  gap: 1rem;
-  margin-top: 10px;
-  width: 100%;
-}
-
-.custom-controls button {
-  background-color: var(--main-btn-bg-color);
-  color: var(--main-text-color);
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;  
+  font-size: 0.8rem;       
+  background: #0077ff;      
+  color: #fff;
   border: none;
-  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
+  transition: background 0.15s ease, transform 0.15s ease;
 }
 
-.progress-bar {
-  width: 100%;
-  height: 10px;
-  background-color: #ddd;
-  margin-top: 10px;
-  overflow: hidden;
+.watch-now:hover {
+  background: #005fcc;       /* darker blue on hover for feedback */
+  transform: translateY(-1px);
 }
 
-.progress-bar span {
-  display: block;
-  height: 100%;
-  background-color: var(--main-bg-color);
-  width: 0;
-  transition: width 0.3s ease;
-}
 
 /* Footer styling */
 footer {
