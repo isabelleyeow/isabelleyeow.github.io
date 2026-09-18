@@ -479,6 +479,16 @@ nav ul li a:hover {
 #volume-slider {
   width: 80px;
 }
+.custom-controls button img {
+  display: block;
+}
+
+.custom-controls button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
 /* Footer styling */
 footer {
   background-color: var(--main-bg-color);

@@ -155,22 +155,22 @@ function seek(event) {
 }
 function setVolume(value) {
   video.volume = value;
-  const muteBtn = document.getElementById('mute-btn');
-  muteBtn.textContent = value == 0 ? '🔇' : '🔊';
+  const muteIcon = document.getElementById('mute-icon');
+  muteIcon.src = value == 0 ? './a2_files/mute.png' : './a2_files/volume.png';
 }
 let lastVolume = 1;
 function toggleMute() {
-  const muteBtn = document.getElementById('mute-btn');
+  const muteIcon = document.getElementById('mute-icon');
   const slider = document.getElementById('volume-slider');
   if (video.volume > 0) {
     lastVolume = video.volume;
     video.volume = 0;
     slider.value = 0;
-    muteBtn.textContent = '🔇';
+    muteIcon.src = './a2_files/mute.png';
   } else {
     video.volume = lastVolume;
     slider.value = lastVolume;
-    muteBtn.textContent = '🔊';
+    muteIcon.src = './a2_files/volume.png';
   }
 }
 function toggleFullscreen() {
@@ -178,5 +178,18 @@ function toggleFullscreen() {
     video.requestFullscreen();
   } else {
     document.exitFullscreen();
+  }
+}
+function togglePlayPause() {
+  const playPauseImg = document.getElementById('play-pause-img');
+
+  if (video.paused) {
+    video.play();
+    playPauseImg.src = './a2_files/pause.png';
+    playPauseImg.alt = 'Pause Button';
+  } else {
+    video.pause();
+    playPauseImg.src = './a2_files/play--v1.png';
+    playPauseImg.alt = 'Play Button';
   }
 }

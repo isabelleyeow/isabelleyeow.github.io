@@ -18,46 +18,54 @@
 <!-- here i added the controls, i used the icons from the file and added customisable volumes, play, pause, progress bars and everything that usually appears on a normal music video-->
 <main class="container player-page"></main>
     <div class="custom-controls">
-                <button id="rewind-btn" onclick="skip(-10)">⏪</button>
-                <button id="play-pause-btn" onclick="togglePlayPause()">
-                    <img id="play-pause-img" src="./a2_files/play--v1.png" alt="Play Button">
+                <button id="rewind-btn" onclick="skip(-10)" aria-label="Rewind 10 seconds">
+                    <img src="./a2_files/rewind.png" alt="Rewind" width="20" height="20">
                 </button>
-                <button id="forward-btn" onclick="skip(10)">⏩</button>
+                <button id="play-pause-btn" onclick="togglePlayPause()">
+                <img id="play-pause-img" src="./a2_files/play--v1.png" alt="Play Button" width="24" height="24">
+                </button>
+                <button id="forward-btn" onclick="skip(10)" aria-label="Forward 10 seconds">
+                    <img src="./a2_files/fastforward.png" alt="Forward" width="20" height="20">
+                </button>
                 <div class="progress-bar" id="progress-bar-container" onclick="seek(event)">
                     <span id="progress-bar-fill"></span>
                 </div>
                 <span id="time-display" class="time-display">0:00 / 0:00</span>
-                <button id="mute-btn" onclick="toggleMute()">🔊</button>
+                <button id="mute-btn" onclick="toggleMute()" aria-label="Mute">
+                <img id="mute-icon" src="./a2_files/mute.png" alt="Volume" width="20" height="20">
+                </button>
                 <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="1" onchange="setVolume(this.value)">
-                <button id="fullscreen-btn" onclick="toggleFullscreen()">⛶</button>
+                <button id="fullscreen-btn" onclick="toggleFullscreen()" aria-label="Fullscreen">
+                <img src="./a2_files/fullscreen.png" alt="Fullscreen" width="20" height="20">
+                </button>
             </div>
         </div>
 
     <!-- trying to format and layout how this will look like as an actual media player. i want this to look like youtube but not completely the same..? -->
     <div class="watch-body">
-            <div class="top-row">
-                <section class="watch-info">
-                    <h1 class="watch-title">3 Monsters</h1>
+        <div class="top-row">
+            <section class="watch-info">
+                <h1 class="watch-title">3 Monsters</h1>
                     <p class="watch-stats">1 view • Released 2026</p>
 
-                    <div class="action-row">
-                        <button class="action-btn" onclick="toggleLike()">
-                            <span id="like-icon">🤍</span> <span id="like-count">1</span>
-                        </button>
-                        <button class="action-btn">🔗 Share</button>
-                    </div>
+        <div class="action-row">
+            <button class="action-btn" onclick="toggleLike()">
+                <span id="like-icon">🤍</span> <span id="like-count">1</span>
+            </button>
+            <button class="action-btn">🔗 Share</button>
+        </div>
 
-                    <div class="uploader-row">
-                        <img src="./a2_files/avatar-placeholder.png" alt="Adam Marchione" class="avatar">
-                        <button class="follow" onclick="toggleFollow()">+ Follow</button>
-                    </div>
+        <div class="uploader-row">
+            <img src="./a2_files/avatar-placeholder.png" alt="Adam Marchione" class="avatar">
+            <button class="follow" onclick="toggleFollow()">+ Follow</button>
+        </div>
 
-                    <p class="watch-description">
-                        3 Monsters is a chaotic take on procrastination, student life and the pressure 
-                        of leaving everything till the last minute. Fueled by caffeine and guilt, it captures 
-                        the struggle of a university student in between wanting to grind and rot all day.
-                    </p>
-                </section>
+            <p class="watch-description">
+                3 Monsters is a chaotic take on procrastination, student life and the pressure 
+                of leaving everything till the last minute. Fueled by caffeine and guilt, it captures 
+                the struggle of a university student in between wanting to grind and rot all day.
+            </p>
+        </section>
 
     <aside class="lyrics-panel">
                     <div class="lyrics-header">
