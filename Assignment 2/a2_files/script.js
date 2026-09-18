@@ -94,6 +94,8 @@ function toggleLike() {
 const comments = [
   { name: "Jiunn Hern", time: "3 days ago", text: "Fire music video Adam! This hits hard" },
   { name: "Aiesya", time: "5 days ago", text: "Literally might be my new favourite song!!" },
+  { name: "Wanyue", time: "2 days ago", text: "Monster sponsor them pls" },
+  { name: "Suern", time: "1 day ago", text: "Do you do weddings?" },
 ];
 
 const commentsList = document.getElementById('comments-list');

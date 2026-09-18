@@ -36,6 +36,7 @@ body {
 
 
 /* Top Navigation styling */
+/* i edited the style of the top navigation sections (home and credits) because i want it to match the vibe of the entire website more*/
 nav {
   margin-top: 20px;
   text-align: center;
@@ -45,15 +46,26 @@ nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
+  gap: 0.8rem;
+  margin: 0;
+  padding: 1.5rem 0;
 }
 
-nav ul li {
-  margin-right: 20px;
-}
-
-nav a {
+nav ul li a {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  background: #fafafa;
+  border-radius: 8px;
+  color: #333;
   text-decoration: none;
-  color: var(--text-color);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+nav ul li a:hover {
+  background: #eee;
+  transform: translateY(-1px);
 }
 
 /*editing the aesthetics of the watch now buttons and how users will interact with it. as users hover over it the colour will change with i personally like a lot*/
@@ -324,6 +336,88 @@ nav a {
   background: #494949;
   transform: translateY(-1px);
 }
+
+/* credits, i wanted something classy but also easy to read like how ive been designing this entire website*/
+
+.credits-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 2rem 3rem;
+}
+
+.credits-hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.credits-hero h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+}
+
+.credits-subtitle {
+  color: #888;
+  font-size: 1rem;
+}
+
+.credits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.credit-card {
+  background: #fafafa;
+  border-radius: 8px;
+  padding: 1.2rem 1.4rem;
+}
+
+.credit-role {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #999;
+  margin-bottom: 0.3rem;
+}
+
+.credit-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111;
+}
+
+/* credits image bts*/
+.image-placeholder {
+  width: 100%;
+  max-width: 700px;
+  height: 280px;
+  margin: 0 auto 2.5rem;
+  background: #f5f5f5;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-text {
+  color: #aaa;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/*
+.credits-image {
+  width: 100%;
+  max-width: 700px;
+  display: block;
+  margin: 0 auto 2.5rem;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
 /* Footer styling */
 footer {
   background-color: var(--main-bg-color);
