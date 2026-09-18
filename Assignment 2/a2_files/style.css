@@ -171,14 +171,10 @@ nav ul li a:hover {
 }
 
 .follow:hover {
-  background: #0077ff;
+  background: #004faa;
   color: #fff;
 }
 
-.follow {
-  background: #0077ff;
-  color: #fff;
-}
 /* about the video, styling and fixing the layout of it*/
 .about-video {
   max-width: 800px;
@@ -468,7 +464,21 @@ nav ul li a:hover {
   border-radius: 8px;
   object-fit: cover;
 }
+/* controls for the video*/
+.time-display {
+  font-size: 0.85rem;
+  color: #666;
+  white-space: nowrap;
+}
 
+.progress-bar {
+  flex: 1;
+  cursor: pointer;
+}
+
+#volume-slider {
+  width: 80px;
+}
 /* Footer styling */
 footer {
   background-color: var(--main-bg-color);

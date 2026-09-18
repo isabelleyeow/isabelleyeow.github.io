@@ -127,3 +127,56 @@ function addComment() {
 }
 
 renderComments();
+
+// video controls, this part took the longest because i had to keep going back and forth on mdn to figure out how everything worked. i think im pretty proud of how everything turned out overall
+
+function skip(seconds) {
+  video.currentTime = Math.min(
+    Math.max(0, video.currentTime + seconds),
+    video.duration || 0
+  );
+}
+function formatTime(sec) {
+  if (isNaN(sec)) return '0:00';
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60).toString().padStart(2, '0');
+  return `${m}:${s}`;
+}
+video.addEventListener('timeupdate', () => {
+  const percent = (video.currentTime / video.duration) * 100 || 0;
+  progressFill.style.width = `${percent}%`;
+  timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+});
+function seek(event) {
+  const rect = progressContainer.getBoundingClientRect();
+  const clickX = event.clientX - rect.left;
+  const percent = clickX / rect.width;
+  video.currentTime = percent * video.duration;
+}
+function setVolume(value) {
+  video.volume = value;
+  const muteBtn = document.getElementById('mute-btn');
+  muteBtn.textContent = value == 0 ? '🔇' : '🔊';
+}
+let lastVolume = 1;
+function toggleMute() {
+  const muteBtn = document.getElementById('mute-btn');
+  const slider = document.getElementById('volume-slider');
+  if (video.volume > 0) {
+    lastVolume = video.volume;
+    video.volume = 0;
+    slider.value = 0;
+    muteBtn.textContent = '🔇';
+  } else {
+    video.volume = lastVolume;
+    slider.value = lastVolume;
+    muteBtn.textContent = '🔊';
+  }
+}
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    video.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
