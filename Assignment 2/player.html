@@ -37,21 +37,32 @@
       </div>
 
       <p class="watch-description">
-        "3 Monsters" explores isolation through surreal, dreamlike sequences 
-        shot entirely at night.
+        3 Monsters is a chaotic take on procrastination, student life and the pressure 
+        of leaving everything till the last minute. Fueled by caffeine and guilt, it captures the struggle of a university student in between wanting to grind and rot all day. 
       </p>
     </section>
 
     <section class="lyrics-panel">
       <div class="lyrics-header">
         <h2>Lyrics</h2>
-        <button id="lyrics-toggle" onclick="toggleLyricsVisibility()">Hide</button>
       </div>
       <div id="lyrics-list" class="lyrics-list">
-        <!-- lines injected by JS from the lyrics array -->
       </div>
     </section>
 
+    <!-- i want to add a 'fake' comment section to show the authenticity of this website -->
+    <section class="comments-section">
+  <h2 class="comments-heading">Comments</h2>
+
+  <div class="comment-input-row">
+    <input type="text" id="comment-input" placeholder="Add a comment" maxlength="200">
+    <button onclick="addComment()">Post</button>
+  </div>
+
+  <div id="comments-list" class="comments-list">
+
+  </div>
+</section>
   </div>
 </main>
 </body>

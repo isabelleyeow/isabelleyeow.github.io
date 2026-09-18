@@ -134,32 +134,29 @@ nav a {
 }
 
 .about-text {
-  color: #555;
+  color: #666;
   line-height: 1.6;
 }
 
 /* editing the media player page to make it seem like a real media player. i want something easy to navigate and read*/
 .watch-body {
-  display: flex;
-  gap: 1.5rem;
-  max-width: 1000px;
+  max-width: 800px;
   margin: 2rem auto;
   padding: 0 2rem;
-  align-items: flex-start;
   font-family: "Arial", sans-serif;
 }
 
 .watch-info {
-  flex: 2;
+  margin-bottom: 2rem;
 }
 
 .lyrics-panel {
-  flex: 1;
   background: #fafafa;
   border-radius: 8px;
   padding: 1.2rem;
   max-height: 400px;
   overflow-y: auto;
+  margin-bottom: 2rem;
 }
 
 .lyrics-header {
@@ -209,8 +206,79 @@ nav a {
 /* stack vertically on smaller screens */
 @media (max-width: 750px) {
   .watch-body {
-    flex-direction: column;
+    padding: 0 1rem;
   }
+}
+
+/* comment section*/
+.comments-section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0;
+}
+
+.comments-heading {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.comment-input-row {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.comment-input-row input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.comment-input-row button {
+  padding: 0.5rem 1.2rem;
+  background: #0077ff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.15s ease;
+}
+
+.comment-input-row button:hover {
+  background: #005fcc;
+}
+
+.comments-list {
+  max-height: 320px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-right: 0.5rem;
+}
+
+.comment {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.8rem;
+}
+
+.comment-name {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.comment-time {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+.comment-text {
+  margin-top: 0.3rem;
+  color: #333;
+  line-height: 1.4;
 }
 
 /* Footer styling */
