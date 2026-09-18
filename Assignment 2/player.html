@@ -20,50 +20,53 @@
 
     <div class="watch-body">
 
-    <section class="watch-info">
-      <h1 class="watch-title">3 Monsters</h1>
-      <p class="watch-stats">1 view • Released 2026</p>
+    <!-- trying to format and layout how this will look like as an actual media player. i want this to look like youtube but not completely the same..? -->
+    <div class="top-row">
+        <section class="watch-info">
+            <h1 class="watch-title">3 Monsters</h1>
+                <p class="watch-stats">1 view • Released 2026</p>
 
-      <div class="action-row">
+    <div class="action-row">
         <button class="action-btn" onclick="toggleLike()">
           <span id="like-icon">🤍</span> <span id="like-count">1</span>
         </button>
         <button class="action-btn">🔗 Share</button>
-      </div>
-      <!-- trying to format and layout how this will look like as an actual media player. i want this to look like youtube but not completely the same..? -->
-      <div class="uploader-row">
+    </div>
+
+    <div class="uploader-row">
         <img src="./a2_files/avatar-placeholder.png" alt="Adam Marchione" class="avatar">
-        <button class="follow" onclick="toggleFollow()">+ Follow</button>
-      </div>
+            <button class="follow" onclick="toggleFollow()">+ Follow</button>
+    </div>
 
-      <p class="watch-description">
-        3 Monsters is a chaotic take on procrastination, student life and the pressure 
-        of leaving everything till the last minute. Fueled by caffeine and guilt, it captures the struggle of a university student in between wanting to grind and rot all day. 
-      </p>
+            <p class="watch-description">
+                3 Monsters is a chaotic take on procrastination, student life and the pressure 
+                of leaving everything till the last minute. Fueled by caffeine and guilt, it captures 
+                the struggle of a university student in between wanting to grind and rot all day.
+            </p>
     </section>
 
-    <section class="lyrics-panel">
-      <div class="lyrics-header">
-        <h2>Lyrics</h2>
-      </div>
-      <div id="lyrics-list" class="lyrics-list">
-      </div>
-    </section>
+    <aside class="lyrics-panel">
+        <div class="lyrics-header">
+         <h2>Lyrics</h2>
+        </div>
+        <div id="lyrics-list" class="lyrics-list"></div>
+    </aside>
+    </div>
 
     <!-- i want to add a 'fake' comment section to show the authenticity of this website -->
-    <section class="comments-section">
-  <h2 class="comments-heading">Comments</h2>
+   <section class="comments-section">
+        <h2 class="comments-heading">Comments</h2>
+            <div class="comment-input-row">
+        <input type="text" id="comment-input" placeholder="Add a comment" maxlength="200">
+        <button onclick="addComment()">Post</button>
+        </div>
+        <div id="comments-list" class="comments-list"></div>
+  </section>
 
-  <div class="comment-input-row">
-    <input type="text" id="comment-input" placeholder="Add a comment" maxlength="200">
-    <button onclick="addComment()">Post</button>
-  </div>
-
-  <div id="comments-list" class="comments-list">
-
-  </div>
+</div>
+</div>
 </section>
-  </div>
+</div>
 </main>
 </body>
 </html>
