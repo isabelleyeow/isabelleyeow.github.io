@@ -94,6 +94,55 @@ nav ul li a:hover {
 }
 
 /* adding more details to make it look like a real music website*/
+/* for the thumbnail and formatting, i want viewers to get a glimpse or a teaser before pressing watch now*/
+.hero {
+  width: 100%;
+  max-width: none;      
+  margin: 0;             
+  height: 55vh;          
+  min-height: 320px;
+  padding: 0;
+  background: #f0f0f0;   
+  border-radius: 0;      
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.hero {
+  background: url('./a2_files/thumbnail.jpg') center/cover no-repeat;
+}
+.hero-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  color: #111;
+}
+
+.hero-subtitle {
+  color: #888;
+  font-size: 1rem;
+  margin: 0 0 1.5rem;
+}
+
+.hero-cta {
+  padding: 0.75rem 1.8rem;
+  font-size: 1rem;
+  background: #0077ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.hero-cta:hover {
+  background: #005fcc;
+  transform: translateY(-1px);
+}
+
 .bar {
   display: flex;
   justify-content: space-between;
@@ -130,24 +179,26 @@ nav ul li a:hover {
   background: #0077ff;
   color: #fff;
 }
-
 /* about the video, styling and fixing the layout of it*/
 .about-video {
+  max-width: 800px;
+  margin: 0 auto 2.5rem;
   padding: 2rem;
-  max-width: 700px;
-  margin: 0 auto;      
-  text-align: left;    
+  background: #fafafa;
+  border-radius: 12px;
 }
 
 .about-heading {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #999;
+  margin-bottom: 0.8rem;
 }
 
 .about-text {
-  color: #666;
-  line-height: 1.6;
+  color: #444;
+  line-height: 1.7;
 }
 
 /* editing the media player page to make it seem like a real media player. i want something easy to navigate and read*/
