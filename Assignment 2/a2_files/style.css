@@ -297,6 +297,33 @@ nav a {
   line-height: 1.4;
 }
 
+/* back home edts*/
+.back-home {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  border-top: 0.5px solid #eee;
+  margin-top: 2rem;
+}
+
+.back-home-text {
+  color: #000000;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.back-home-btn {
+  padding: 0.6rem 1.4rem;
+  background: #aaaaaa;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.back-home-btn:hover {
+  background: #494949;
+  transform: translateY(-1px);
+}
 /* Footer styling */
 footer {
   background-color: var(--main-bg-color);
