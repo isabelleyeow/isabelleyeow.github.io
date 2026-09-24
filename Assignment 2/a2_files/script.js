@@ -102,7 +102,6 @@ const comments = [
 ];
 
 const commentsList = document.getElementById('comments-list');
-
 function renderComments() {
   commentsList.innerHTML = '';
   comments.forEach(c => {
