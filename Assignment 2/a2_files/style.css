@@ -109,6 +109,7 @@ nav ul li a:hover {
 }
 /* adding more details to make it look like a real music website*/
 /* for the thumbnail and formatting, i want viewers to get a glimpse or a teaser before pressing watch now*/
+
 .hero {
   position: relative;
   width: 100%;
@@ -216,7 +217,7 @@ nav ul li a:hover {
   max-width: 1100px;
   margin: 2rem auto;
   padding: 0 2rem;
-  font-family: "Arial", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .top-row {
