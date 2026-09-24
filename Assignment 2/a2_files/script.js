@@ -49,9 +49,12 @@ const lyrics = [
   { time: 178.0, text: "Maybe I should work.." },
 
 ];
-
+// ensuring that the progress bar moves and that everything is sync up with one another
 const video = document.getElementById('custom-video-player');
 const lyricsList = document.getElementById('lyrics-list');
+const progressFill = document.getElementById('progress-bar-fill');
+const progressContainer = document.getElementById('progress-bar-container');
+const timeDisplay = document.getElementById('time-display');
 
 lyrics.forEach((line, index) => {
   const div = document.createElement('div');
@@ -90,10 +93,10 @@ function toggleLike() {
   count.textContent = liked ? current + 1 : current - 1;
 }
 
-// comments section
+// comments section, i want it to look real but i thought allowing users to comment themselves would have been a little difficult to achieve so i kept it consistent and fixed the whole way through. i think it turned out to look pretty nice and im very happy with it 
 const comments = [
-  { name: "Jiunn Hern", time: "3 days ago", text: "Fire music video Adam! This hits hard" },
-  { name: "Aiesya", time: "5 days ago", text: "Literally might be my new favourite song!!" },
+  { name: "Jiunn Hern", time: "5 days ago", text: "Fire music video Adam! This hits hard" },
+  { name: "Aiesya", time: "3 days ago", text: "i frickin love 3 monsters" },
   { name: "Wanyue", time: "2 days ago", text: "Monster sponsor them pls" },
   { name: "Suern", time: "1 day ago", text: "Do you do weddings?" },
 ];
