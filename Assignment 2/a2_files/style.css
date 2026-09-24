@@ -546,7 +546,64 @@ nav ul li a:hover {
   margin: 0 auto 2.5rem;
   border-radius: 8px;
 }
+/* attributions from everything that i sourced externally*/
+.attribution-card {
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 1.6rem 1.8rem;
+}
 
+.attribution-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #999;
+  margin: 0 0 0.6rem;
+}
+
+.attribution-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.attribution-tag {
+  font-size: 0.8rem;
+  color: #555;
+  background: #eee;
+  border-radius: 100px;
+  padding: 0.35rem 0.8rem;
+}
+
+.attribution-tag a {
+  color: #0077ff;
+  text-decoration: none;
+}
+
+.attribution-tag a:hover {
+  text-decoration: underline;
+}
+
+.attribution-note {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}
+
+.attribution-note a {
+  color: #0077ff;
+  text-decoration: none;
+}
+
+.attribution-note a:hover {
+  text-decoration: underline;
+}
+
+.attribution-divider {
+  border-top: 1px solid #e5e5e5;
+  margin: 1.1rem 0;
+}
 /* Footer styling */
 footer {
   background-color: var(--main-bg-color);
