@@ -154,3 +154,193 @@ MILKS.forEach(function (m) { $('shelf-milk').appendChild(makeChip(m, 'milk')); }
 TOPPINGS.forEach(function (t) { $('shelf-top').appendChild(makeChip(t, 'topping')); });
 $('shelf-sugar').appendChild(makeChip({ id: 'sugar', name: 'Sugar cube', colour: '#F3E3BE', cube: true }, 'sugar'));
 $('shelf-ice').appendChild(makeChip({ id: 'ice', name: 'Ice cube', colour: '#D6E9F5', cube: true }, 'ice'));
+
+// dragging feature, i had to keep going back and forth with mdn because there was a problem i couldnt figure out but after a while i managed to solve it and everything seemed to work as it should 
+
+var drag = null;
+ 
+document.addEventListener('pointerdown', function (e) {
+  var chip = e.target.closest('.chip');
+  if (!chip || state.sealed) { return; }
+  drag = {
+    src: chip,
+    kind: chip.dataset.kind,
+    id: chip.dataset.id,
+    x0: e.clientX,
+    y0: e.clientY,
+    moved: false,
+    ghost: null
+  };
+});
+ 
+document.addEventListener('pointermove', function (e) {
+  if (!drag) { return; }
+
+  if (!drag.moved && Math.hypot(e.clientX - drag.x0, e.clientY - drag.y0) > 6) {
+    drag.moved = true;
+    drag.src.classList.add('is-held');
+    drag.ghost = drag.src.cloneNode(true);
+    drag.ghost.className = 'ghost';
+    document.body.appendChild(drag.ghost);
+    Sound.pick();
+  }
+  if (!drag.moved) { return; }
+ 
+  drag.ghost.style.left = e.clientX + 'px';
+  drag.ghost.style.top = e.clientY + 'px';
+  dropzone.classList.toggle('hot', overCup(e.clientX, e.clientY));
+});
+ 
+document.addEventListener('pointerup', function (e) {
+  if (!drag) { return; }
+  var d = drag;
+  drag = null;
+  dropzone.classList.remove('hot');
+ 
+  if (!d.moved) { add(d.kind, d.id); return; } 
+ 
+  d.src.classList.remove('is-held');
+ 
+  if (overCup(e.clientX, e.clientY)) {
+    d.ghost.remove();
+    add(d.kind, d.id);
+  } else {
+    
+    var r = d.src.getBoundingClientRect();
+    d.ghost.classList.add('returning');
+    d.ghost.style.left = (r.left + r.width / 2) + 'px';
+    d.ghost.style.top = (r.top + r.height / 2) + 'px';
+    d.ghost.style.opacity = '0';
+    Sound.back();
+    setTimeout(function () { d.ghost.remove(); }, 300);
+  }
+});
+
+function overCup(x, y) {
+  var r = cup.getBoundingClientRect();
+  return x > r.left - 26 && x < r.right + 26 && y > r.top - 26 && y < r.bottom + 26;
+}
+
+// adding and removing 
+
+function add(kind, id) {
+  if (state.sealed) { return; }
+ 
+  if (kind === 'tea') {
+    state.tea = id;
+    splash();
+    Sound.pour();
+ 
+  } else if (kind === 'milk') {
+    state.milk = id;
+    splash();
+    Sound.pour();
+ 
+  } else if (kind === 'sugar') {
+    if (state.sugar >= MAX_SUGAR) { return reject("that's as sweet as it gets"); }
+    state.sugar++;
+    dissolveCube();
+    Sound.plink();
+ 
+  } else if (kind === 'ice') {
+    if (state.ice >= MAX_ICE) { return reject("that's plenty of ice"); }
+    state.ice++;
+    Sound.plink();
+ 
+  } else if (kind === 'topping') {
+    if (!state.tea) { return reject('pour a tea base first'); }
+    if (state.toppings.indexOf(id) !== -1) { return reject('already in the cup'); }
+    if (state.toppings.length >= MAX_TOPPINGS) { return reject("cup's full!"); }
+    state.toppings.push(id);
+    Sound.plop();
+  }
+  state.shake = 0;
+  render();
+}
+ 
+function removeTopping(id) {
+  state.toppings = state.toppings.filter(function (t) { return t !== id; });
+  state.shake = 0;
+  Sound.back();
+  render();
+}
+
+function reject(message) {
+  cup.classList.remove('wobble');
+  void cup.offsetWidth;
+  cup.classList.add('wobble');
+  Sound.nope();
+  toast(message);
+}
+ 
+function splash() {
+  var s = $('splash');
+  s.classList.remove('go');
+  void s.offsetWidth;
+  s.classList.add('go');
+}
+ 
+function dissolveCube() {
+  var c = document.createElement('div');
+  c.className = 'cube sugar';
+  $('sugar-layer').appendChild(c);
+  setTimeout(function () { c.remove(); }, 1100); 
+}
+ 
+var toastTimer;
+function toast(message) {
+  var t = $('toast');
+  t.textContent = message;
+  t.classList.add('up');
+  $('live').textContent = message; 
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function () { t.classList.remove('up'); }, 1700);
+}
+ 
+// shaking
+var shakeDrag = null;
+ 
+cup.addEventListener('pointerdown', function (e) {
+  if (!canShake() || e.target.closest('.bit')) { return; }
+  shakeDrag = { last: e.clientX, dir: 0 };
+  cup.setPointerCapture(e.pointerId);
+});
+ 
+cup.addEventListener('pointermove', function (e) {
+  if (!shakeDrag) { return; }
+  var dx = e.clientX - shakeDrag.last;
+  if (Math.abs(dx) < 9) { return; }  
+  var dir = Math.sign(dx);
+  if (dir !== shakeDrag.dir) {   
+    shakeDrag.dir = dir;
+    bumpShake(9);
+  }
+  shakeDrag.last = e.clientX;
+});
+ 
+cup.addEventListener('pointerup', function () { shakeDrag = null; });
+cup.addEventListener('pointercancel', function () { shakeDrag = null; });
+ 
+$('shake-btn').addEventListener('click', function () {
+  if (!canShake()) { return; }
+  cup.classList.add('shaking');
+  var timer = setInterval(function () {
+    bumpShake(7);
+    if (state.shake >= 100) {
+      clearInterval(timer);
+      cup.classList.remove('shaking');
+    }
+  }, 70);
+});
+ 
+function canShake() {
+  return state.tea !== null && !state.sealed && state.shake < 100;
+}
+ 
+function bumpShake(amount) {
+  Sound.tick(state.shake);
+  state.shake = Math.min(100, state.shake + amount);
+  if (state.shake >= 100) { toast('mixed and ready'); }
+  render();
+}
+   
