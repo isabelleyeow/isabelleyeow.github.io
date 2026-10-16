@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drop & Sip: Build your bubble tea</title>
-
+    <title>Drop &amp; Sip: Build your bubble tea</title>
+ 
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-    
-<!--i chose fonts that i think would be easy for users to read since customising something of their preference might require a lot of clear and clean designs 
+ 
+<!--i chose fonts that i think would be easy for users to read since customising something of their preference might require a lot of clear and clean designs
 but i also didn't want it to turn out too stiff so i thought these combinations would work well. -->
-
+ 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
-
+ 
     <script src="main.js" defer></script>
 </head>
 <body>
-
-    <div class="wrap"></div>
-
+ 
+<!-- the wrap holds the whole page so it stays centred and never gets too wide -->
+ 
+<div class="wrap">
+ 
     <!-- here is where i will put the headings -->
-
+ 
      <header class="site-head">
         <p class="brand">Drop <span>&amp;</span> Sip</p>
         <p class="step">Step 2 of 3: Customise your drink</p>
@@ -31,9 +33,14 @@ but i also didn't want it to turn out too stiff so i thought these combinations 
             <span aria-hidden="true">♪</span> Sound on
         </button>
     </header>
-
+ 
+    <!-- the shell is the three column grid: shelf on the left, cup in the middle,
+         order summary on the right. all three sections have to sit inside it. -->
+ 
+    <div class="shell">
+ 
     <!-- next, the shelf. i've also set a limit to how many of each item they can pick to not overcrowd the drink too much and possibly cause some errors.-->
-
+ 
     <section class="panel" aria-labelledby="shelf-title">
       <h2 id="shelf-title">The shelf</h2>
  
@@ -64,12 +71,12 @@ but i also didn't want it to turn out too stiff so i thought these combinations 
     </section>
  
     <!--the cup -->
-
+ 
     <section class="stage" aria-label="Your cup">
  
     <!-- i decided to name this the drop zone and made it a little bigger than the cup so users who
      miss it will still be able to drop it into the cup basically it would still count even if they miss by a little.-->
-
+ 
       <div class="dropzone" id="dropzone">
         <p class="dropzone-hint">drop here</p>
  
@@ -77,8 +84,8 @@ but i also didn't want it to turn out too stiff so i thought these combinations 
           <div class="lid" id="lid"></div>
           <div class="straw" id="straw"></div>
  
-          <!-- Everything inside cup-body is clipped by overflow and its hidden.-->
-
+          <!-- everything inside cup-body is clipped by overflow and its hidden.-->
+ 
           <div class="cup-body">
             <div class="liquid" id="liquid"></div>
             <div class="milk-swirl" id="swirl"></div>
@@ -93,8 +100,8 @@ but i also didn't want it to turn out too stiff so i thought these combinations 
         </div>
       </div>
  
-      <!-- The shake meter. i was envision something immersive but not too complicated as well -->
-      
+      <!-- the shake meter. i was envisioning something immersive but not too complicated as well -->
+ 
       <div class="shaker" id="shaker">
         <svg class="ring" viewBox="0 0 60 60" aria-hidden="true">
           <circle class="track" cx="30" cy="30" r="25"></circle>
@@ -115,10 +122,9 @@ but i also didn't want it to turn out too stiff so i thought these combinations 
         Drag a topping out of the cup to take it back off.
       </p>
         </section>
-    <div class="shell">
-
+ 
     <!-- order summary-->
-
+ 
     <section class="panel" aria-labelledby="order-title">
       <h2 id="order-title">Your drink</h2>
       <p class="drinkname" id="drink-name">Empty cup</p>

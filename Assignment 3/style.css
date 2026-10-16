@@ -551,9 +551,97 @@ body {
   text-align: center;
   max-width: 320px;
 }
+/* order summary */
+.drinkname {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.25;
+}
+
+.price {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--pink);
+  font-variant-numeric: tabular-nums;
+}
+
+.readout {
+  list-style: none;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.readout li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13.5px;
+  border-bottom: 1px dashed var(--line);
+  padding-bottom: 9px;
+}
+
+.readout li:last-child { border-bottom: none; padding-bottom: 0; }
+.readout b { font-weight: 500; color: var(--muted); }
+.readout-block { flex: 1; min-width: 0; }
+.readout-row { display: flex; justify-content: space-between; }
+
+.meter {
+  height: 7px;
+  border-radius: 4px;
+  background: var(--line);
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.meter i { display: block; height: 100%; width: 0; background: var(--pink); transition: width 0.4s; }
+
+.tops { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+
+.top-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  background: var(--pink-soft);
+  border: 1px solid var(--pink);
+  border-radius: 999px;
+  padding: 3px 6px 3px 9px;
+}
+
+.top-chip button { color: var(--pink); font-size: 15px; line-height: 1; padding: 0 2px; }
+.top-chip button:focus-visible { outline: 2px solid var(--pink); outline-offset: 1px; }
+
+.btn {
+  display: block;
+  width: 100%;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 12px;
+  padding: 13px;
+  margin-top: 12px;
+  background: var(--pink);
+  color: #fff;
+  transition: transform 0.12s, filter 0.12s;
+}
+
+.btn[disabled] { opacity: 0.35; cursor: not-allowed; }
+.btn:not([disabled]):hover { filter: brightness(1.07); transform: translateY(-1px); }
+.btn:focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; }
+
+.btn.ghost-btn {
+  background: transparent;
+  color: var(--muted);
+  border: 1.5px solid var(--line);
+  font-size: 13.5px;
+  padding: 10px;
+}
 
 /* order cart */
-
 .ordercard {
   position: fixed;
   left: 50%;
