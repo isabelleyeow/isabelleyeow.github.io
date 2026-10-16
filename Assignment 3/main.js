@@ -343,4 +343,53 @@ function bumpShake(amount) {
   if (state.shake >= 100) { toast('mixed and ready'); }
   render();
 }
+
+// name of the item and its price
+
+function find(list, id) {
+  return list.filter(function (item) { return item.id === id; })[0];
+}
+ 
+function teaObj()     { return find(TEAS, state.tea); }
+function milkObj()    { return find(MILKS, state.milk); }
+function topObj(id)   { return find(TOPPINGS, id); }
+ 
+function price() {
+  if (!state.tea) { return 0; }
+  var p = BASE_PRICE + milkObj().price;
+  state.toppings.forEach(function (id) { p += topObj(id).price; });
+  return p;
+}
+ 
+function money(n) { return '$' + n.toFixed(2); }
+ 
+// i want it to build a sentence of the final order so users can know what theyre ordering or what they have ordered before checking out 
+function drinkName() {
+  if (!state.tea) { return 'Empty cup'; }
+  var n = teaObj().name;
+  if (state.milk === 'dairy') { n += ' milk tea'; }
+  else if (state.milk === 'oat') { n += ' oat milk tea'; }
+ 
+  if (state.toppings.length) {
+    var names = state.toppings.map(function (id) { return topObj(id).name.toLowerCase(); });
+    n += ' with ' + (names.length === 1
+      ? names[0]
+      : names.slice(0, -1).join(', ') + ' & ' + names[names.length - 1]);
+  }
+  return n;
+}
+ 
+// to blend the tea and the milk from the 2 separated colours to one lighter coloured of the original base
+function mix(a, b, t) {
+  function parts(hex) {
+    return [1, 3, 5].map(function (i) { return parseInt(hex.substr(i, 2), 16); });
+  }
+  var c1 = parts(a), c2 = parts(b);
+  function channel(x, y) {
+    return Math.round(x + (y - x) * t).toString(16).padStart(2, '0');
+  }
+  return '#' + channel(c1[0], c2[0]) + channel(c1[1], c2[1]) + channel(c1[2], c2[2]);
+}
+
+// to render everything 
    
