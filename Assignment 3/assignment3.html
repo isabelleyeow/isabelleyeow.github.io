@@ -31,7 +31,89 @@ but i also didn't want it to turn out too stiff so i thought these combinations 
             <span aria-hidden="true">♪</span> Sound on
         </button>
     </header>
+
+    <!-- next, the shelf. i've also set a limit to how many of each item they can pick to not overcrowd the drink too much and possibly cause some errors.-->
+
+    <section class="panel" aria-labelledby="shelf-title">
+      <h2 id="shelf-title">The shelf</h2>
  
+      <div class="shelf">
+        <div class="shelf-head"><h3>Tea base</h3><em>pick one</em></div>
+        <div class="chips" id="shelf-tea"></div>
+      </div>
+ 
+      <div class="shelf">
+        <div class="shelf-head"><h3>Milk</h3><em>pick one</em></div>
+        <div class="chips" id="shelf-milk"></div>
+      </div>
+ 
+      <div class="shelf">
+        <div class="shelf-head"><h3>Sweetness</h3><em>up to 4 cubes</em></div>
+        <div class="chips" id="shelf-sugar"></div>
+      </div>
+ 
+      <div class="shelf">
+        <div class="shelf-head"><h3>Ice</h3><em>up to 3 cubes</em></div>
+        <div class="chips" id="shelf-ice"></div>
+      </div>
+ 
+      <div class="shelf">
+        <div class="shelf-head"><h3>Toppings</h3><em>max 3</em></div>
+        <div class="chips" id="shelf-top"></div>
+      </div>
+    </section>
+ 
+    <!--the cup -->
+
+    <section class="stage" aria-label="Your cup">
+ 
+    <!-- i decided to name this the drop zone and made it a little bigger than the cup so users who
+     miss it will still be able to drop it into the cup basically it would still count even if they miss by a little.-->
+
+      <div class="dropzone" id="dropzone">
+        <p class="dropzone-hint">drop here</p>
+ 
+        <div class="cup" id="cup">
+          <div class="lid" id="lid"></div>
+          <div class="straw" id="straw"></div>
+ 
+          <!-- Everything inside cup-body is clipped by overflow and its hidden.-->
+
+          <div class="cup-body">
+            <div class="liquid" id="liquid"></div>
+            <div class="milk-swirl" id="swirl"></div>
+            <div class="foam" id="foam"></div>
+            <div class="cubes" id="ice-layer"></div>
+            <div class="cubes" id="sugar-layer"></div>
+            <div class="sinkers" id="sinkers"></div>
+            <div class="splash" id="splash"></div>
+          </div>
+ 
+          <p class="cup-empty" id="cup-empty">Drag a tea base in to start pouring</p>
+        </div>
+      </div>
+ 
+      <!-- The shake meter. i was envision something immersive but not too complicated as well -->
+      <div class="shaker" id="shaker">
+        <svg class="ring" viewBox="0 0 60 60" aria-hidden="true">
+          <circle class="track" cx="30" cy="30" r="25"></circle>
+          <circle class="bar" id="ring-bar" cx="30" cy="30" r="25"
+                  transform="rotate(-90 30 30)"
+                  stroke-dasharray="157" stroke-dashoffset="157"></circle>
+          <text x="30" y="35" text-anchor="middle" id="ring-pct">0</text>
+        </svg>
+        <div class="shaker-copy">
+          <strong>Shake to mix</strong>
+          <span id="shake-sub">Drag the cup side to side</span>
+          <button class="mini" id="shake-btn">or press here to shake</button>
+        </div>
+      </div>
+ 
+      <p class="note">
+        Everything also works by clicking, by keyboard and by touch.
+        Drag a topping out of the cup to take it back off.
+      </p>
+    </section>
   <div class="shell">
 </body>
 </html>
