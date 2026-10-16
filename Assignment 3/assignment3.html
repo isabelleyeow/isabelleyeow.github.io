@@ -113,7 +113,56 @@ but i also didn't want it to turn out too stiff so i thought these combinations 
         Everything also works by clicking, by keyboard and by touch.
         Drag a topping out of the cup to take it back off.
       </p>
+        </section>
+    <div class="shell">
+
+    <!-- order summary-->
+
+    <section class="panel" aria-labelledby="order-title">
+      <h2 id="order-title">Your drink</h2>
+      <p class="drinkname" id="drink-name">Empty cup</p>
+      <p class="price" id="price">$0.00</p>
+ 
+      <ul class="readout">
+        <li><b>Tea</b><span id="r-tea">—</span></li>
+        <li><b>Milk</b><span id="r-milk">—</span></li>
+        <li>
+          <div class="readout-block">
+            <div class="readout-row"><b>Sweetness</b><span id="r-sugar">0%</span></div>
+            <div class="meter"><i id="sugar-meter"></i></div>
+          </div>
+        </li>
+        <li><b>Ice</b><span id="r-ice">No ice</span></li>
+        <li>
+          <div class="readout-block">
+            <div class="readout-row"><b>Toppings</b><span id="r-topcount">0 / 3</span></div>
+            <div class="tops" id="r-tops"></div>
+          </div>
+        </li>
+      </ul>
+ 
+      <button class="btn" id="add-btn" disabled>Pick a tea base</button>
+      <button class="btn ghost-btn" id="reset-btn">Start over</button>
     </section>
-  <div class="shell">
+ 
+    </div>
+    </div>
+ 
+    <div class="ordercard" id="ordercard" role="status">
+    <div class="ordercard-row">
+        <div>
+        <p class="tag">Added to order</p>
+        <h3 id="oc-name">Your drink</h3>
+        <p id="oc-sub">Ready for pickup in about 10 minutes</p>
+        </div>
+        <button class="btn" id="oc-btn">Done</button>
+    </div>
+    </div>
+ 
+<!-- here i just wanted to add a small message bubble for things like 'cup is full!' or something related to that-->
+<p class="toast" id="toast"></p>
+ 
+<p class="sr-only" id="live" aria-live="polite"></p>
+ 
 </body>
 </html>
