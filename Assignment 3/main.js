@@ -392,4 +392,180 @@ function mix(a, b, t) {
 }
 
 // to render everything 
+
+function render() {
+  var hasTea = state.tea !== null;
+ 
+  // measures how full the cup is and never allowing it to overflow from the top of the cup as it would be unrealistic 
+  var fill = 0;
+  if (hasTea) {
+    fill = 52;
+    if (state.milk !== 'none') { fill += 9; }
+    fill += state.ice * 4 + state.sugar * 1;
+    state.toppings.forEach(function (id) { fill += topObj(id).sinks ? 5 : 6; });
+  }
+  fill = Math.min(fill, 86); 
+  liquid.style.height = fill + '%';
+ 
+  // milk only blends in as the shaking goes
+  if (hasTea) {
+    var blend = state.milk === 'none' ? 0 : 0.42 * (state.shake / 100);
+    liquid.style.backgroundColor = mix(teaObj().colour, milkObj().colour, blend);
+  }
+  var swirl = $('swirl');
+  var milkBand = Math.round(fill * 0.42);
+  swirl.style.setProperty('--milk', milkObj().colour);
+  swirl.style.height = milkBand + '%';
+  swirl.style.bottom = (fill - milkBand) + '%';
+  swirl.style.opacity = (hasTea && state.milk !== 'none')
+    ? String(0.94 * (1 - state.shake / 100))
+    : '0';
+ 
+  // for cheese foam to always be on top as these type fo ingredients are always situated at the top of the drink
+  var foam = $('foam');
+  foam.style.opacity = state.toppings.indexOf('foam') !== -1 ? '1' : '0';
+  foam.style.bottom = (fill - 3) + '%';
+ 
+  // i wanted the toppings like boba, popping pearls etc to sink into the drink but it would depend on how many is added and how theyre sat on top of each other
+  var sink = $('sinkers');
+  sink.innerHTML = '';
+  state.toppings.filter(function (id) { return topObj(id).sinks; }).forEach(function (id) {
+    var t = topObj(id);
+    for (var i = 0; i < t.pieces; i++) {
+      var b = document.createElement('button');
+      b.className = 'bit ' + t.shape;
+      b.dataset.topping = id;
+      b.setAttribute('aria-label', 'Remove ' + t.name);
+      sink.appendChild(b);
+    }
+  });
+ 
+  // for the ice to float from the liquids 
+  var iceLayer = $('ice-layer');
+  iceLayer.innerHTML = '';
+  iceLayer.style.bottom = Math.max(fill - 14, 2) + '%';
+  for (var i = 0; i < state.ice; i++) {
+    var c = document.createElement('div');
+    c.className = 'cube ice';
+    iceLayer.appendChild(c);
+  }
+ 
+  $('cup-empty').style.display = hasTea ? 'none' : 'flex';
+ 
+  document.querySelectorAll('.chip').forEach(function (chip) {
+    var k = chip.dataset.kind, id = chip.dataset.id;
+    var on = (k === 'tea' && state.tea === id) ||
+             (k === 'milk' && state.milk === id && hasTea) ||
+             (k === 'topping' && state.toppings.indexOf(id) !== -1);
+    chip.classList.toggle('is-on', on);
+  });
+ 
+  // the order summary of what they added into a cup, i want to create a clear part of the page where users can see exactly what they ordered as this builds onto the bigger picture of this project
+  $('drink-name').textContent = drinkName();
+  $('price').textContent = money(price());
+  $('r-tea').textContent = hasTea ? teaObj().name : '—';
+  $('r-milk').textContent = hasTea ? milkObj().name : '—';
+  $('r-sugar').textContent = (state.sugar / MAX_SUGAR * 100) + '%';
+  $('sugar-meter').style.width = (state.sugar / MAX_SUGAR * 100) + '%';
+  $('r-ice').textContent = ICE_WORDS[state.ice];
+  $('r-topcount').textContent = state.toppings.length + ' / ' + MAX_TOPPINGS;
+ 
+  var tops = $('r-tops');
+  tops.innerHTML = '';
+  state.toppings.forEach(function (id) {
+    var el = document.createElement('span');
+    el.className = 'top-chip';
+    el.innerHTML = topObj(id).name +
+      ' <button aria-label="Remove ' + topObj(id).name + '">&times;</button>';
+    el.querySelector('button').addEventListener('click', function () { removeTopping(id); });
+    tops.appendChild(el);
+  });
+ 
+  // the shake 
+  var ready = state.shake >= 100;
+  $('shaker').classList.toggle('live', hasTea && !state.sealed);
+ 
+  // here i had a little help because i needed to get the measurements of the cups and everything  before continuing 
+  var circumference = 157;
+  $('ring-bar').style.strokeDashoffset = circumference - circumference * state.shake / 100;
+  $('ring-pct').textContent = Math.round(state.shake);
+  $('shake-sub').textContent = ready ? 'Blended — looks good' : 'Drag the cup side to side';
+  cup.classList.toggle('shakeable', canShake());
+ 
+  // the main button so it can be carried onto the next step 
+  var btn = $('add-btn');
+  btn.disabled = !ready || state.sealed;
+  btn.textContent = state.sealed ? 'Added — ' + money(price())
+    : ready ? 'Add to order · ' + money(price())
+    : hasTea ? 'Shake it first'
+    : 'Pick a tea base';
+}
+ 
+//to put a topping back out or basically an undo if the user second guesses themselves or want to tey something new
+var pullOut = null;
+ 
+cup.addEventListener('pointerdown', function (e) {
+  var bit = e.target.closest('.bit');
+  if (!bit || state.sealed) { return; }
+  pullOut = { id: bit.dataset.topping, x0: e.clientX, y0: e.clientY };
+});
+ 
+document.addEventListener('pointerup', function (e) {
+  if (!pullOut) { return; }
+  var p = pullOut;
+  pullOut = null;
+  var outside = !overCup(e.clientX, e.clientY);
+  var dragged = Math.hypot(e.clientX - p.x0, e.clientY - p.y0) > 20;
+  if (outside && dragged) {
+    removeTopping(p.id);
+    toast(topObj(p.id).name + ' taken out');
+  }
+});
+
+cup.addEventListener('keydown', function (e) {
+  var bit = e.target.closest('.bit');
+  if (bit && (e.key === 'Enter' || e.key === ' ')) {
+    e.preventDefault();
+    removeTopping(bit.dataset.topping);
+  }
+});
+ 
+// finishing and restarting 
+ 
+$('add-btn').addEventListener('click', function () {
+  if (state.shake < 100) { return; }
+  state.sealed = true;
+  render();
+  $('lid').classList.add('on');
+  $('straw').classList.add('on');
+  Sound.seal();
+ 
+  setTimeout(function () {
+    $('oc-name').textContent = drinkName();
+    $('oc-sub').textContent = money(price()) + ' · ready for pickup in about 10 minutes';
+    $('ordercard').classList.add('up');
+    Sound.done();
+  }, 420);
+});
+ 
+$('oc-btn').addEventListener('click', reset);
+$('reset-btn').addEventListener('click', reset);
+ 
+function reset() {
+  state.tea = null;
+  state.milk = 'none';
+  state.sugar = 0;
+  state.ice = 0;
+  state.toppings = [];
+  state.shake = 0;
+  state.sealed = false;
+  $('lid').classList.remove('on');
+  $('straw').classList.remove('on');
+  $('ordercard').classList.remove('up');
+  render();
+}
+ 
+// draw the empty up once at the start 
+render();
+ 
    
