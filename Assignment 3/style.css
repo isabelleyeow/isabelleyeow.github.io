@@ -94,7 +94,7 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 300px) minmax(0, 1fr) minmax(0, 290px);
   gap: 18px;
-  align-items: start;
+  align-items: stretch;
 }
 
 @media (max-width: 900px) {
@@ -107,6 +107,8 @@ body {
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
 }
  
 .panel h2 {
@@ -702,4 +704,76 @@ body {
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
+}
+
+/* originally there was a lot of blank space at the end which i didnt like, i wanted it to fill the whole page so that it doesnt look so disogranised so i decided to add more instructions on what to do and also a little credits section. but all of this is just to maintain the harmony and appearance*/
+.pickup {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.pickup h3 {
+  font-family: var(--display);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 6px;
+}
+
+.pickup strong {
+  display: block;
+  color: var(--espresso);
+  font-weight: 500;
+}
+
+/* the instrusctions or reminders of how this works */
+.steps {
+  margin-top: auto;
+  padding-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.step-card {
+  flex: 1 1 110px;
+  min-width: 0;
+  background: var(--pink-soft);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.step-card b {
+  display: block;
+  font-family: var(--display);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 3px;
+}
+
+.step-card span {
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.site-foot {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--muted);
 }
